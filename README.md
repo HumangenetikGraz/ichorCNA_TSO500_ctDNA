@@ -11,7 +11,7 @@ Original ichorCNA pipeline adapted at the Institute of Human Genetics, Medical U
 
 ## Requirements
 UNIX OS with a **SLURM job management system** plus appropriate RAM and disk space.
-If you don't have a SLURM job scheduling system inplace, you must comment out line 94 in `TSO500_ichorCNA_from_offtarget_reads_PARALLEL.sh` and uncomment line 95.
+If you don't have a SLURM job scheduling system inplace, you must comment out line 94 in `TSO500_ichorCNA_from_offANDontarget_reads_PARALLEL.sh` and uncomment line 95.
 
 ## Getting started
 1) Set up the repo. Install ichorCNA from the official maintainer:
