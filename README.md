@@ -15,10 +15,24 @@ If you don't have a SLURM job scheduling system inplace, you must comment out li
 
 ## Getting started
 1) Set up the repo. Install ichorCNA from the official maintainer:
-https://github.com/broadinstitute/ichorCNAThe path to the ichorCNA folder must be provided via `--ichorpath` to the driver script 'drv_TSO500_offtarget_ichorCNA_parallel.sh'.
+https://github.com/broadinstitute/ichorCNA The path to the ichorCNA folder must be provided via `--ichorpath` to the driver script 'drv_TSO500_offtarget_ichorCNA_parallel.sh'.
 2) create the 'TSO500ichorCNA' conda environment from the YAL file `conda/env.yaml`
 3) activate the environment: conda activate TSO500ichorCNA
 4) run the pipeline through the driver script `drv_TSO500_offtarget_ichorCNA_parallel.sh`
+
+## Docker
+You can also build an environment and run the script in the docker container. 
+1) `cd docker`
+2) `docker build -t ichorcna_tso500 .`
+3) `docker run --rm \
+    -v /path/to/ichorCNA_repo:/mnt/repo \
+    -v /path/to/ichorCNA_wrapper:/mnt/wrapper \
+    -v /path/to/ichorCNA_data:/mnt/data \
+    --user $(id -u):$(id -g) \
+    ichorcna_tso500:latest \
+    bash /mnt/wrapper/drv_TSO500_offtarget_ichorCNA_docker.sh \
+        -d /mnt/data/ \
+        -p /mnt/repo`
 
 ## Usage
 The only other parameter aside of `--ichorpath` that needs to be provided is `--indir`, the path to the directory containing the indexed output BAM files from Illumina's ichorCNA ctDNA analysis pipeline.
